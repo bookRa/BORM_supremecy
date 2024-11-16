@@ -32,8 +32,17 @@ def read_file(path):
 
 
 def analyze_story(text):
+    characters_prompt = f"""
+    List all characters, from most to least important, in this story in this format:
+    
+    Name/Role (possible nicknames, omit if none)
+    Characteristics: (list top three characteristics)
+    Physical Description (generate physical traits that fit the character's personality):
+    Description (of the character, a few sentences):
+    No extra formatting chars please!
+    """
     characters = query_openai(
-        f"List all characters in the following story with descriptions: {text[:1500]}"
+        f"{characters_prompt} {text[:29000]}" 
     )
     settings = query_openai(f"{read_file("settings_prompt.md")} {text[:1500]}")
     script = query_openai(
