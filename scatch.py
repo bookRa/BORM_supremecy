@@ -32,6 +32,7 @@ df.columns
 # %%
 print(df["Settings"])
 df["Settings"] = read_file("canned_setting.md")
-
 print(df["Settings"])
-# df.to_csv(path_or_buf=r"extracted_story_details.csv", sep=",", header=True, index=False)
+df.to_csv(path_or_buf=r"extracted_story_details.csv", sep=",", header=True, index=False)
+
+# %%

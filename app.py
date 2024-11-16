@@ -15,8 +15,8 @@ if uploaded_file is not None:
     raw_text_tab, character_text_tab, settings_text_tab, script_text_tab = st.tabs(
         ["Raw Text", "Characters", "Settings", "Script"]
     )
-    story_analysis = test_analyze_story(clean_text_extract)
-    # story_analysis = analyze_story(clean_text_extract)
+    # story_analysis = test_analyze_story(clean_text_extract)
+    story_analysis = analyze_story(clean_text_extract)
 
     with raw_text_tab:
         st.markdown(clean_text_extract)
