@@ -2,4 +2,5 @@ openai
 pdfplumber
 pandas
 python-dotenv
+requests
 qrcode
