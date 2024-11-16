@@ -26,11 +26,16 @@ def test_analyze_story(text):
     return {"characters": characters, "settings": settings, "script": script}
 
 
+def read_file(path):
+    with open(path, "r", encoding="utf-8") as file:
+        return file.read()
+
+
 def analyze_story(text):
     characters = query_openai(
         f"List all characters in the following story with descriptions: {text[:1500]}"
     )
-    settings = query_openai(f"Describe the settings in this story: {text[:1500]}")
+    settings = query_openai(f"{read_file("settings_prompt.md")} {text[:1500]}")
     script = query_openai(
         f"Convert this excerpt into a script format with dialogues and stage directions: {text[:1500]}"
     )

@@ -19,10 +19,10 @@ if uploaded_file is not None:
     story_analysis = analyze_story(clean_text_extract)
 
     with raw_text_tab:
-        st.text(clean_text_extract)
+        st.markdown(clean_text_extract)
     with character_text_tab:
-        st.text(story_analysis["characters"])
+        st.markdown(story_analysis["characters"])
     with settings_text_tab:
-        st.text(story_analysis["settings"])
+        st.markdown(story_analysis["settings"])
     with script_text_tab:
-        st.text(story_analysis["script"])
+        st.markdown(story_analysis["script"])
