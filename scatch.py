@@ -12,7 +12,7 @@ client = OpenAI(api_key=api_key)
 
 
 def analyze_story(prompt, text):
-    return query_openai(f"{prompt} {text[:1500]}")
+    return query_openai(f"{prompt} {text}")
 
 
 # %%
@@ -55,6 +55,13 @@ print(response)
 
 
 # %%
+
+import json
+
+response = json.loads(read_file("extracted_settings.json"))
+
 print(type(response))
 for setting, description in response.items():
     print(f"{setting}: {description}")
+
+# %%
