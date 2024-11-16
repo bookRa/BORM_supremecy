@@ -20,7 +20,7 @@ def preprocess_text(text):
     return re.sub(r"\s+", " ", text)
 
 
-def test_process_pdf(pdf):
+def test_process_pdf():
     with open("full_text.md", "r") as file:
         return file.read()
 
