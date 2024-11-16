@@ -13,6 +13,7 @@ if uploaded_file is not None:
     clean_text_extract = test_process_pdf(uploaded_file)
     # clean_text_extract = process_pdf(uploaded_file)
     # Display results in tabs
+
     (
         raw_text_tab,
         character_text_tab,
@@ -22,15 +23,14 @@ if uploaded_file is not None:
     ) = st.tabs(["Raw Text", "Characters", "Settings", "Script", "Storyboard"])
     story_analysis = test_analyze_story(clean_text_extract)
     # story_an  alysis = analyze_story(clean_text_extract)
-
     with raw_text_tab:
-        st.text(clean_text_extract)
+        st.markdown(clean_text_extract)
     with character_text_tab:
-        st.text(story_analysis["characters"])
+        st.markdown(story_analysis["characters"])
     with settings_text_tab:
-        st.text(story_analysis["settings"])
+        st.markdown(story_analysis["settings"])
     with script_text_tab:
-        st.text(story_analysis["script"])
+        st.markdown(story_analysis["script"])
     with storyboard_tab:
         st.header("Storyboard")
         st.write("Below is a visual storyboard of the scenes:")
