@@ -2,3 +2,5 @@ openai
 pdfplumber
 pandas
 python-dotenv
+ebooklib
+beautifulsoup4
