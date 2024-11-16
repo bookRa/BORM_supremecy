@@ -10,7 +10,7 @@ uploaded_file = st.file_uploader("Upload a PDF", type=["pdf"])
 
 if uploaded_file is not None:
     st.write("File uploaded successfully!")
-    clean_text_extract = test_process_pdf(uploaded_file)
+    clean_text_extract = test_process_pdf()
     # clean_text_extract = process_pdf(uploaded_file)
     # Display results in tabs
 
