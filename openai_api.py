@@ -41,10 +41,8 @@ def analyze_story(text):
     Description (of the character, a few sentences):
     No extra formatting chars please!
     """
-    characters = query_openai(
-        f"{characters_prompt} {text[:29000]}" 
-    )
-    settings = query_openai(f"{read_file("settings_prompt.md")} {text[:1500]}")
+    characters = query_openai(f"{characters_prompt} {text[:29000]}")
+    settings = query_openai(f"{read_file('settings_prompt.md')} {text[:1500]}")
     script = query_openai(
         f"Convert this excerpt into a script format with dialogues and stage directions: {text[:1500]}"
     )
