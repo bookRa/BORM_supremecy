@@ -1,12 +1,24 @@
+import os
 import streamlit as st
 
 
-def display_dynamic_storyboard(scenes, image_urls):
+def display_dynamic_storyboard(image_directory):
     """
-    Display a dynamic storyboard layout inspired by the provided image.
-    :param scenes: List of scene descriptions.
-    :param image_urls: List of image URLs (placeholder or generated).
+    Display a dynamic storyboard layout using images from a directory.
+
+    Args:
+        image_directory (str): The directory containing the storyboard images.
     """
+    # Get a list of image files sorted by filename
+    image_files = sorted(
+        [
+            os.path.join(image_directory, f)
+            for f in os.listdir(image_directory)
+            if f.endswith(".png")
+        ]
+    )
+
+    # Define CSS for styling
     st.markdown(
         """
         <style>
@@ -30,57 +42,21 @@ def display_dynamic_storyboard(scenes, image_urls):
         unsafe_allow_html=True,
     )
 
-    # Create a dynamic layout inspired by the attached image
+    # Display storyboard title
     st.write("### Storyboard")
 
-    # Layout with rows and columns
-    col1, col2 = st.columns([3, 2])  # Adjust relative sizes
-    with col1:
-        st.markdown('<div class="storyboard-panel">', unsafe_allow_html=True)
-        st.image(image_urls[0], caption=scenes[0])
-        st.markdown("</div>", unsafe_allow_html=True)
+    # Dynamically create rows for images
+    num_columns = 3  # Number of columns per row
+    columns = st.columns(num_columns)  # Create placeholders for the first row
 
-    with col2:
-        st.markdown('<div class="storyboard-panel">', unsafe_allow_html=True)
-        st.image(image_urls[1], caption=scenes[1])
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    # Second row with multiple columns
-    col3, col4, col5 = st.columns([1, 2, 1])  # Adjust sizes for visual interest
-    with col3:
-        st.markdown('<div class="storyboard-panel">', unsafe_allow_html=True)
-        st.image(image_urls[2], caption=scenes[2])
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    with col4:
-        st.markdown('<div class="storyboard-panel">', unsafe_allow_html=True)
-        st.image(image_urls[3], caption=scenes[3])
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    with col5:
-        st.markdown('<div class="storyboard-panel">', unsafe_allow_html=True)
-        st.image(image_urls[4], caption=scenes[4])
-        st.markdown("</div>", unsafe_allow_html=True)
-
-
-# Placeholder data for demonstration
-test_scenes = [
-    "Scene 1: The villagers gather.",
-    "Scene 2: Mr. Summers arrives.",
-    "Scene 3: Tessie protests.",
-    "Scene 4: The black box is opened.",
-    "Scene 5: The final outcome.",
-]
-
-test_image_urls = [
-    "https://via.placeholder.com/600x800",
-    "https://via.placeholder.com/400x600",
-    "https://via.placeholder.com/300x300",
-    "https://via.placeholder.com/700x500",
-    "https://via.placeholder.com/500x500",
-]
+    for idx, image_path in enumerate(image_files):
+        # Dynamically choose a column to place the image in
+        with columns[idx % num_columns]:
+            st.markdown('<div class="storyboard-panel">', unsafe_allow_html=True)
+            st.image(image_path, caption=f"Panel {idx + 1}")
+            st.markdown("</div>", unsafe_allow_html=True)
 
 
 # Call the function in the storyboard tab
 def test_display_dynamic_storyboard():
-    display_dynamic_storyboard(test_scenes, test_image_urls)
+    display_dynamic_storyboard("./storyboard_images")
